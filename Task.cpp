@@ -1,5 +1,16 @@
-#include "Arduino.h"
+#ifdef NOT_ARDUINO
+#include <Arduino.h>
+#endif
 #include "Task.h"
+
+
+#ifndef NOT_ARDUINO
+#include <time.h>
+int millis(){
+		return time(0);
+}
+#endif
+
 
 Task::Task(int period_, void (*function_)()){
 	//constructor
@@ -17,7 +28,7 @@ Task::Task(int period_, void (*function_)(), bool enabled_){
 	_last_time = millis();
 }
 void Task::enable(){
-	last_time = millis();
+	_last_time = millis();
 	enabled = true;
 }
 void Task::disable(){
@@ -28,9 +39,10 @@ bool Task::is_enabled(){
 }
 
 void Task::run(){
-	current_time = millis() - last_time;
+	int current_time;
+	current_time = millis() - _last_time;
 	if(enabled && current_time >= period){
 		run_function();
-		last_time = millis();
+		_last_time = millis();
 	}
 }
