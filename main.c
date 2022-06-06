@@ -2,52 +2,18 @@
 #include <stdio.h>
 #include <iostream>
 #include <time.h>
-#include "Task.cpp"
-#include "Event.cpp"
 #include "common.h"
+#include "Event.h"
+#include "StateMachine.h"
+#include "Task.h"
+#include "test.h"
 
 // Comment next line if your using arduino IDE
 #define NOT_ARDUINO 1u
 #define DEBUG 0u
 
-void print3();
-void print2();
-void print1();
-
-
-void my_delay(int i)    /*Pause l'application pour i seconds*/
-{
-    clock_t start,end;
-    start=clock();
-    while(((end=clock())-start)<=i*CLOCKS_PER_SEC);
-}
-void task1_func();
-
-Event event1;
-function function_list[3] = {print3, print2, print1};
-
-const transitions sm1_tr[5] = {
-	{0, 1, event1, function_list, 3},
-	{0, 1, event1, function_list, 3},
-	{0, 1, event1, function_list, 3},
-	{0, 1, event1, function_list, 3},
-	{0, 1, event1, function_list, 3}
-};
-
-const state_functions sm1_funcs[3] = {
-	{function_list},
-	{function_list},
-	{function_list}
-};
-
 int main(){
-	event1.attach(1);
-	event1.attach(2);
-	event1.attach(3);
-	event1.attach(4);
-	event1.attach(5);
-	event1.attach(3);
-	event1.attach(8);
+	//StateMachine sm1(3);
 	Task task1(3, task1_func, true);
 	printf("First exemple %d\n", time(0));
 	my_delay(2);
@@ -61,16 +27,3 @@ int main(){
 	return 0;
 }
 
-void task1_func(){
-	printf("Task1 %d\n", time(0));
-	event1.happen(2);
-}
-void print3(){
-	printf("Print 3!\n");
-}
-void print2(){
-	printf("Print 2!\n");
-}
-void print1(){
-	printf("Print 1!\n");
-}

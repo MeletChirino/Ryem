@@ -1,49 +1,46 @@
-#ifndef NOT_ARDUINO
+#ifdef NOT_ARDUINO
 #include <Arduino.h>
 #endif
-#include "common.h"
 #include "StateMachine.h"
+#include "common.h"
 #include "Event.h"
-/*
- * Lastimosamente no puedes hacer todo como en python debido a la poca versatilidad
- * de c. Lo que puedes hacer es hacer metodos add para que el programa vaya agregando
- * uno a uno cada elemento y armando las listas (arrays).
- * */
 
 StateMachine::StateMachine(int state_numbers_){
 	state_numbers = state_numbers_;
-	state_functions_list = (function_list*)malloc(state_numbers*sizeof(function_list));
 	_n_transition_list = 0;
 	current_state = 0;
-}
+	}
 
-void StateMachine::add_transition_list(transitions transition){
-	//para pasar valores aqui tendras que hacer una transition list en una variable
-	//desde antes y luego pasarla aqui.
-	int i;
-	i = _n_transition_list;
-	_n_transition_list += 1;
-	transition_list = (transitions*) realloc(transition_list, _n_transition_list);
-	(*transition_list + i) = transition;
-}
+void StateMachine::set_state_funcs(state_functions *funcs, int n){
+	state_function_list = (state_functions *) malloc(n* sizeof(state_functions));
+	for(int i = 0; i < n; i++)
+		state_function_list[i] = funcs[i];
+	}
+
+void StateMachine::set_transition_list(transitions *transition_list_, int n){
+	transition_list = (transitions*) malloc(n * sizeof(transitions));
+	_n_transition_list = n;
+	for(int i = 0; i < n; i++)
+		transition_list[i] = transition_list_[i];
+	}
 
 void StateMachine::reset(){
-	current_state = 0
-}
+	current_state = 0;
+	}
 
-void Statemachine::transition(Event event){
-	transitions = current_transition;
+void StateMachine::transition(Event event_){
+	transitions current_transition;
 	for(int i = 0; i < _n_transition_list; i++){
-		current_transition = transition_list[i]
+		current_transition = transition_list[i];
 		if(current_state == current_transition.state &&
-				event ==  current_transition.event){
+			current_transition.event == event_){
 			current_state = current_transition.next_state;
-			current_transition.function_list[i].func()
+			current_transition.function_list[i]();
+			}
 		}
 	}
 
-}
-
 void StateMachine::run(){
-	state_function_list[current_state].function_list[n].func() 
+	for(int i = 0; i < state_numbers; i++)
+		state_function_list[current_state].function_list[i]();
 }
