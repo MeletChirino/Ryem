@@ -1,7 +1,4 @@
-
-typedef struct{
-	void (*func)();
-} function;
+typedef void (*function)();
 
 typedef struct{
 	int state;
@@ -13,6 +10,6 @@ typedef struct{
 
 typedef struct{
 	int state;
-	fucntion *function_list;
-	int n_functions
+	function *function_list;
+	int n_functions;
 } state_functions;

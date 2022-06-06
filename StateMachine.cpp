@@ -1,4 +1,6 @@
-#include "Arduino.h"
+#ifndef NOT_ARDUINO
+#include <Arduino.h>
+#endif
 #include "common.h"
 #include "StateMachine.h"
 #include "Event.h"
