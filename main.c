@@ -14,6 +14,7 @@ void print3();
 void print2();
 void print1();
 
+
 void my_delay(int i)    /*Pause l'application pour i seconds*/
 {
     clock_t start,end;
@@ -23,9 +24,23 @@ void my_delay(int i)    /*Pause l'application pour i seconds*/
 void task1_func();
 
 Event event1;
+function function_list[3] = {print3, print2, print1};
+
+const transitions sm1_tr[5] = {
+	{0, 1, event1, function_list, 3},
+	{0, 1, event1, function_list, 3},
+	{0, 1, event1, function_list, 3},
+	{0, 1, event1, function_list, 3},
+	{0, 1, event1, function_list, 3}
+};
+
+const state_functions sm1_funcs[3] = {
+	{function_list},
+	{function_list},
+	{function_list}
+};
 
 int main(){
-	function function_list[3] = {print3, print2, print1};
 	event1.attach(1);
 	event1.attach(2);
 	event1.attach(3);

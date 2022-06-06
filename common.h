@@ -9,7 +9,6 @@ typedef struct{
 } transitions;
 
 typedef struct{
-	int state;
 	function *function_list;
 	int n_functions;
 } state_functions;
