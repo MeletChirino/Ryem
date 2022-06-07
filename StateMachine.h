@@ -1,10 +1,8 @@
 #ifndef StateMachine_h
 #define StateMachine_h
-
 class Event;
-
-#include "Event.h"
-//class Event;
+//#include "Event.h"
+#include "common.h"
 
 class StateMachine{
 	private:
@@ -17,7 +15,7 @@ class StateMachine{
 		//methods
 		void set_transition_list(transitions*, int);
 		void set_state_funcs(state_functions*, int);
-		void reset(), transition(Event);
+		void reset(), transition(Event*);
 		void run();
 
 };

@@ -1,8 +1,10 @@
 #ifdef NOT_ARDUINO
 #include <Arduino.h>
 #endif
+#include <cstdlib>
+#include <cstdio>
+#include "common.h"
 #include "StateMachine.h"
-//#include "common.h"
 #include "Event.h"
 
 StateMachine::StateMachine(int state_numbers_){
@@ -28,12 +30,12 @@ void StateMachine::reset(){
 	current_state = 0;
 	}
 
-void StateMachine::transition(Event event_){
+void StateMachine::transition(Event *event_){
 	transitions current_transition;
 	for(int i = 0; i < _n_transition_list; i++){
 		current_transition = transition_list[i];
 		if(current_state == current_transition.state &&
-			current_transition.event == event_){
+			&current_transition.event == event_){
 			current_state = current_transition.next_state;
 			current_transition.function_list[i]();
 			}

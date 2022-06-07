@@ -1,6 +1,8 @@
 #ifdef NOT_ARDUINO
 #include <Arduino.h>
 #endif
+#include <cstdlib>
+#include <cstdio>
 #include "Event.h"
 #include "StateMachine.h"
 
@@ -12,7 +14,7 @@ Event::Event(){
 //void attach(StateMachine sm){
 void Event::attach(StateMachine sm){
 	//append value to sm_list
-	printf("attaching element = %d\n", sm);
+	//printf("attaching element = %d\n", sm);
 	sm_number += 1;
 	sm_list = (StateMachine *) realloc( sm_list, sm_number * sizeof(StateMachine));
 	*(sm_list + (sm_number - 1)) = sm;
@@ -20,11 +22,11 @@ void Event::attach(StateMachine sm){
 //void dettach(StateMachine sm){
 void Event::dettach(StateMachine sm){
 	int dettach_element;
-	printf("dettaching element = %d\n", sm);
+	//printf("dettaching element = %d\n", sm);
 	for(int i = 0; i < sm_number; i++){
-		if (sm_list[i] == sm){
+		if (&sm_list[i] == &sm){
 			dettach_element = i;
-			printf("found element inside [%d] = %d\n", i, sm);
+			//printf("found element inside [%d] = %d\n", i, sm);
 			break;
 			}
 		}
@@ -45,6 +47,6 @@ void Event::happen(int value){
 	for(int i = 0; i < sm_number; i++){
 		sm_list[i].transition(this);
 		//sm_list[i] += 1;
-		printf("Event %d\n", sm_list[i]);
+		//printf("Event %d\n", sm_list[i]);
 	}
 }

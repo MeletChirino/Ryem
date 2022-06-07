@@ -1,6 +1,8 @@
 #ifdef NOT_ARDUINO
 #include <Arduino.h>
 #endif
+#include <stdlib.h>
+#include <stdio.h>
 #include "Task.h"
 
 
