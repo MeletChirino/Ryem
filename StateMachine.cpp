@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #endif
 #include "StateMachine.h"
-#include "common.h"
+//#include "common.h"
 #include "Event.h"
 
 StateMachine::StateMachine(int state_numbers_){

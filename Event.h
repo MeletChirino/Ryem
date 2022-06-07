@@ -1,7 +1,14 @@
 #ifndef Event_h
 #define Event_h
-class Event;
+class StateMachine;
 #include "StateMachine.h"
+
+typedef void (*function)();
+
+typedef struct{
+	function *function_list;
+	int n_functions;
+} state_functions;
 
 class Event{
 	private:
@@ -12,5 +19,13 @@ class Event{
 		Event();//name, sm_number
 		void attach(StateMachine), dettach(StateMachine), happen(int);
 };
+
+typedef struct transitions{
+	int state;
+	int next_state;
+	Event event_t;
+	function *function_list;
+	int n_functions;
+} transitions;
 
 #endif

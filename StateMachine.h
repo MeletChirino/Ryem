@@ -1,9 +1,8 @@
 #ifndef StateMachine_h
 #define StateMachine_h
 
-class StateMachine;
+class Event;
 
-#include "common.h"
 #include "Event.h"
 //class Event;
 
