@@ -13,5 +13,4 @@ class Event{
 		void attach(StateMachine), dettach(StateMachine), happen(int);
 };
 
-
 #endif
