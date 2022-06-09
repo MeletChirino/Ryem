@@ -4,13 +4,14 @@ class StateMachine;
 //#include "StateMachine.h"
 
 class Event{
-	private:
-		int sm_number;
 	public:
 		//attributes
 		StateMachine *sm_list;
-		Event();//name, sm_number
+		int sm_number;
+		//methods
+		Event();//constructor
 		void attach(StateMachine), dettach(StateMachine), happen(int);
+		void status();
 };
 
 #endif

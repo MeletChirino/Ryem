@@ -11,9 +11,10 @@ Event::Event(){
 	sm_number = 0; 
 }
 void Event::attach(StateMachine sm){
-	sm_number += 1;
+	sm_number++;
 	sm_list = (StateMachine *) realloc( sm_list, sm_number * sizeof(StateMachine));
 	*(sm_list + (sm_number - 1)) = sm;
+		printf("Attaching state machine\nsm_number = %d\n", sm_number);
 }
 
 void Event::dettach(StateMachine sm){
@@ -27,13 +28,18 @@ void Event::dettach(StateMachine sm){
 	for(int i = dettach_element; i < sm_number-1; i++){
 		sm_list[i] = sm_list[i+1];
 		}
-	sm_number -= 1;
+	sm_number--;
 	sm_list = (StateMachine *) realloc( sm_list, sm_number * sizeof(StateMachine));
 }
 
+void Event::status(){
+		printf("sm_number = %d\n", sm_number);
+}
+
 void Event::happen(int value){
-		printf("Event happen\n");
+	printf("Event happen\ntrying %d times", sm_number);
 	for(int i = 0; i < sm_number; i++){
-		sm_list[i].transition(this);
+			printf("i = %d", i);
+			sm_list[i].transition(*this);
 	}
 }

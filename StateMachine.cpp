@@ -26,16 +26,23 @@ void StateMachine::set_transition_list(transitions *transition_list_, int n){
 		transition_list[i] = transition_list_[i];
 	}
 
+void StateMachine::attach_event(Event event){
+		printf("\n\nAttaching in SM");
+		event.attach(*this);
+}
+
 void StateMachine::reset(){
 	current_state = 0;
 	}
 
-void StateMachine::transition(Event *event_){
+void StateMachine::transition(Event event_){
 	transitions current_transition;
+	printf("transition %d", current_state);
 	for(int i = 0; i < _n_transition_list; i++){
 		current_transition = transition_list[i];
+		printf("transition %d -> %d", current_transition.state, current_transition.next_state);
 		if(current_state == current_transition.state &&
-			&current_transition.event == event_){
+			&current_transition.event == &event_){
 			current_state = current_transition.next_state;
 			current_transition.function_list[i]();
 			}
@@ -43,6 +50,8 @@ void StateMachine::transition(Event *event_){
 	}
 
 void StateMachine::run(){
-	for(int i = 0; i < state_numbers; i++)
-		state_function_list[current_state].function_list[i]();
+		int n_funcs = state_function_list[current_state].n_functions;
+	for(int i = 0; i < n_funcs; i++){
+			state_function_list[current_state].function_list[i]();
+	}
 }

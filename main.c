@@ -17,43 +17,78 @@ void print3();
 void print2();
 void print1();
 void task1_func();
-void my_delay(int);
+void task2_func();
+void task3_func();
+void events_func();
+void my_delay(int i);
 
-Task task1(3, task1_func, true);
+Task task1(3, task1_func, false);
+Task events_task(1, events_func, true);
 
 Event event1;
-function function_list[3] = {print3, print2, print1};
-StateMachine sm1;
+Event event2;
+Event event3;
+
+function func_l1[3] = {print3, print2, print1};
+function func_l2[2] = {print3, print2};
+function func_l3[2] = {print3, print1};
+
+#define N_FUNC_ST1 2
+function function_state1[N_FUNC_ST1] = {task1_func, task2_func};
+function function_state2[2] = {task2_func, task3_func};
+function function_state3[2] = {task1_func, task3_func};
+
+StateMachine sm1(3);
 
 transitions sm1_tr[3] = {
-	{0, 1, event1, function_list, 3},
-	{0, 1, event1, function_list, 3},
-	{0, 1, event1, function_list, 3}
+	//init_state, next_state, event, function_list, function_list_size
+	{0, 1, event1, func_l1, 3},
+	{1, 2, event2, func_l2, 2},
+	{2, 0, event3, func_l3, 2}
 };
 
 state_functions sm1_funcs[3] = {
-	{function_list, 1},
-	{function_list, 1},
-	{function_list, 1}
+	{function_state1, N_FUNC_ST1},
+	{function_state2, 2},
+	{function_state3, 2}
 };
 
 int main(){
-	//Task task1(3, task1_func, true);
+	sm1.set_state_funcs(sm1_funcs, 3);
+	sm1.set_transition_list(sm1_tr, 3);
+	sm1.attach_event(event1);
+	sm1.attach_event(event2);
+	sm1.attach_event(event3);
+	
 	printf("First exemple %ld\n", time(0));
 	my_delay(2);
-	//event1.dettach(3);
 	printf("second exemple %ld\n", time(0));
-	for(int i = 0; i < 3; i++)
-			function_list[i]();
+	event1.status();
+	event2.status();
+	event3.status();
 	while(1){
-		task1.run();
+		//task1.run();
+		events_task.run();
+		//sm1.run();
 	}
 	return 0;
+}
+void events_func(){
+		event1.happen(1);
+		event2.happen(1);
+		event3.happen(1);
 }
 
 void task1_func(){
 	printf("Task1 %ld\n", time(0));
-	event1.happen(2);
+}
+
+void task2_func(){
+	printf("Task2 %ld\n", time(0));
+}
+
+void task3_func(){
+	printf("Task3 %ld\n", time(0));
 }
 
 void print3(){

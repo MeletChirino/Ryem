@@ -20,4 +20,10 @@ typedef struct state_functions{
 	int n_functions;
 } state_functions;
 
+/*
+typedef struct tasks_list{
+		Task *task;
+		int n_tasks;
+} tasks_list;
+*/
 #endif
