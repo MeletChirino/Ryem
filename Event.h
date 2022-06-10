@@ -7,7 +7,7 @@ class Event{
 	public:
 		//attributes
 		StateMachine *sm_list;
-		int sm_number;
+		int *sm_number;
 		//methods
 		Event();//constructor
 		void attach(StateMachine), dettach(StateMachine), happen(int);
