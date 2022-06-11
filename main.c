@@ -1,3 +1,8 @@
+// Comment next line if your using arduino IDE
+#define NOT_ARDUINO 1u
+#define DEBUG 0u
+
+#ifdef NOT_ADRUINO
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
@@ -9,9 +14,6 @@
 
 using namespace std;
 
-// Comment next line if your using arduino IDE
-#define NOT_ARDUINO 1u
-#define DEBUG 0u
 
 void print3();
 void print2();
@@ -107,3 +109,4 @@ void my_delay(int i)    /*Pause l'application pour i seconds*/
     start=clock();
     while(((end=clock())-start)<=i*CLOCKS_PER_SEC);
 }
+#endif
