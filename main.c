@@ -2,7 +2,7 @@
 #define NOT_ARDUINO 1u
 #define DEBUG 0u
 
-#ifdef NOT_ADRUINO
+#ifdef NOT_ARDUINO
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
