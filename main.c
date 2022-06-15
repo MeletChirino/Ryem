@@ -31,7 +31,9 @@ Event event1;
 Event event2;
 Event event3;
 
-function func_l1[3] = {print3, print2, print1};
+//function fun = dynamic_cast<void(*)()>(task1.disable);
+
+function func_l1[3] = {print1, print2, print1};
 function func_l2[2] = {print3, print2};
 function func_l3[2] = {print3, print1};
 
