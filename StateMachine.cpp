@@ -18,5 +18,3 @@ void StateMachine::reset(){
 	}
 
 void StateMachine::transition(Event event_){}
-
-void StateMachine::run(){}

@@ -7,6 +7,9 @@
 #include "StateMachine.h"
 
 Event::Event(){
+}
+
+void Event::init(){
 	sm_list = (StateMachine *) malloc(sizeof(StateMachine));
 	sm_number = (int *) malloc(sizeof(int));
 	*sm_number = 0; 
@@ -15,7 +18,6 @@ void Event::attach(StateMachine sm){
 	*sm_number += 1;
 	sm_list = (StateMachine *) realloc( sm_list, *sm_number * sizeof(StateMachine));
 	*(sm_list + (*sm_number - 1)) = sm;
-		printf("Attaching state machine\nsm_number = %d\n", *sm_number);
 }
 
 void Event::dettach(StateMachine sm){
@@ -33,14 +35,15 @@ void Event::dettach(StateMachine sm){
 	sm_list = (StateMachine *) realloc( sm_list, *sm_number * sizeof(StateMachine));
 }
 
-void Event::status(){
-		printf("sm_number = %d\n", *sm_number);
+int Event::status(){
+	return *sm_number;
 }
 
-void Event::happen(int value){
-	printf("Event happen\ntrying %d times", *sm_number);
+void Event::happen(){
+	//Serial.println("\n\nEVENT HAPENED!!\n\n");
+	//printf("Event happen\ntrying %d times", *sm_number);
 	for(int i = 0; i < *sm_number; i++){
-			printf("i = %d", i);
+			//printf("i = %d", i);
 			sm_list[i].transition(*this);
 	}
 }

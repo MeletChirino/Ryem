@@ -10,8 +10,9 @@ class Event{
 		int *sm_number;
 		//methods
 		Event();//constructor
-		void attach(StateMachine), dettach(StateMachine), happen(int);
-		void status();
+		void attach(StateMachine), dettach(StateMachine), happen();
+		void init();
+		int status();
 };
 
 #endif

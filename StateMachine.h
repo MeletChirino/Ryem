@@ -8,8 +8,7 @@ class StateMachine{
 		StateMachine();
 		int current_state, state_numbers;
 		//methods
-		void reset(), transition(Event), attach_event(Event event_);
-		void run();
+		void reset(), transition(Event event_), attach_event(Event event_);
 
 };
 #endif
