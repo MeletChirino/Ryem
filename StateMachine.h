@@ -4,17 +4,11 @@ class Event;
 #include "common.h"
 
 class StateMachine{
-	private:
-		int _n_transition_list;
 	public:
-		StateMachine(int);
+		StateMachine();
 		int current_state, state_numbers;
-		transitions *transition_list;
-		state_functions *state_function_list;
 		//methods
-		void set_transition_list(transitions*, int);
-		void set_state_funcs(state_functions*, int);
-		void reset(), transition(Event), attach_event(Event);
+		void reset(), transition(Event), attach_event(Event event_);
 		void run();
 
 };
