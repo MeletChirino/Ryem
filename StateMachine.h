@@ -14,7 +14,7 @@ class StateMachine {
 
     void (*run_method)(int *current_state);
     //methods
-    void reset(), transition(Event event_), attach_event(Event event_), init(int);
+    void reset(), transition(Event event_), attach_event(Event *event_), init(int);
     unsigned int get_id();
     void transition(Event *);
     void run();

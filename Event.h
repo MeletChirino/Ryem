@@ -1,13 +1,14 @@
 #ifndef Event_h
 #define Event_h
 class StateMachine;
-//#include "StateMachine.h"
 
 class Event{
+  	private:
+		std::vector<StateMachine> _sm_list;
+		int sm_number;
 	public:
 		//attributes
-		StateMachine *sm_list;
-		int *sm_number, id;
+		int id;
 		//methods
 		Event();//constructor
 		void attach(StateMachine), dettach(StateMachine), happen();
