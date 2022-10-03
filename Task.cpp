@@ -27,7 +27,7 @@ Task::Task(int period_, void (*function_)(), bool enabled_){
 	enabled = enabled_;
 	run_function = function_;
 	period = period_;
-	_last_time = millis();
+	_last_time = -period_;
 }
 void Task::enable(){
 	_last_time = millis();
