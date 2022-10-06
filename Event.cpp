@@ -33,7 +33,7 @@ int Event::status() {
 void Event::happen() {
   Serial.println("\n\nEVENT HAPENED!!\n\n");
   Serial.print("\nsm_number = ");
-  Serial.println(sm_list.size());
+  Serial.println(_sm_list.size());
   for (int i = 0; i < this->_sm_list.size(); i++) {
     //printf("i = %d", i);
     Serial.print("i = ");
