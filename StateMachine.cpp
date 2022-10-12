@@ -25,9 +25,18 @@ void StateMachine::reset() {
 }
 
 void StateMachine::transition(Event *event_) {
+  Serial.println(" --------------- \nTransition Happened\n---------------");
+  Serial.print("Event "); Serial.println(event_->id);
+  Serial.print(current_state);
+  Serial.print("->");
   transition_method(event_, &current_state);
+  Serial.print(current_state);
+  Serial.print("\nFinish transition\n\n");
 }
 
 void StateMachine::run() {
+  Serial.print("---------- SM current State => ");
+  Serial.print(current_state);
+  Serial.println(" ----------");
   run_method(&current_state);
 }
