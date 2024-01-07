@@ -7,5 +7,5 @@ unsigned int StateMachine::get_id() {
 }
 
 void StateMachine::attach_event(Event *event_) {
-  event_->attach(*this);
+  event_->attach(this);
 }

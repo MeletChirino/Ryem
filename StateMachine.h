@@ -1,7 +1,7 @@
 #ifndef StateMachine_h
 #define StateMachine_h
 
-class Event;
+#include "./Event.h"
 
 class StateMachine {
   public:

@@ -19,7 +19,7 @@ void Event::attach(StateMachine *sm) {
   Serial.print("Attaching ev->");
   Serial.print(id);
   Serial.print(" to sm->");
-  Serial.println(sm.get_id());
+  Serial.println(sm->get_id());
   this->_sm_list.push_back(sm);
 }
 
