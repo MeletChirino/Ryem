@@ -1,5 +1,7 @@
 #ifndef Event_h
 #define Event_h
+#include <vector>
+
 class StateMachine;
 
 class Event{

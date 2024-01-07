@@ -2,7 +2,6 @@
 #include <malloc.h>
 #include "Event.h"
 #include "StateMachine.h"
-#include <vector>
 
 Event::Event() {
 }
