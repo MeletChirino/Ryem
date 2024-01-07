@@ -1,10 +1,11 @@
 #ifndef StateMachine_h
 #define StateMachine_h
+
 class Event;
 
 class StateMachine {
   public:
-    unsigned int current_state = 0, state_numbers, id;
+    unsigned int state_numbers, id;
 
     //methods
     void reset(), attach_event(Event *event_), init(int);

@@ -9,7 +9,3 @@ unsigned int StateMachine::get_id() {
 void StateMachine::attach_event(Event *event_) {
   event_->attach(*this);
 }
-
-void StateMachine::reset() {
-  current_state = 0;
-}

@@ -14,7 +14,8 @@ int Event::get_id() {
   return id;
 }
 
-void Event::attach(StateMachine sm) {
+void Event::attach(StateMachine *sm) {
+  // Followings are debug prints
   Serial.print("Attaching ev->");
   Serial.print(id);
   Serial.print(" to sm->");
@@ -22,7 +23,8 @@ void Event::attach(StateMachine sm) {
   this->_sm_list.push_back(sm);
 }
 
-void Event::dettach(StateMachine sm) {
+void Event::dettach(StateMachine *sm) {
+  // TODO: Implement this method
 }
 
 int Event::status() {
@@ -37,7 +39,7 @@ void Event::happen() {
     //printf("i = %d", i);
     Serial.print("i = ");
     Serial.println(i);
-    _sm_list[i].transition(this);
+    _sm_list[i]->transition(this);
   }
   Serial.print("Transitions Done\n");
 }
