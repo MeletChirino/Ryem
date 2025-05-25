@@ -1,45 +1,18 @@
-#include <Arduino.h>
-#include <malloc.h>
 #include "Event.h"
 #include "StateMachine.h"
 
-Event::Event() {
-}
-
-void Event::init(int id_) {
-  id = id_;
-}
-
-int Event::get_id() {
-  return id;
-}
+Event::Event(){};
 
 void Event::attach(StateMachine *sm) {
-  // Followings are debug prints
-  Serial.print("Attaching ev->");
-  Serial.print(id);
-  Serial.print(" to sm->");
-  Serial.println(sm->get_id());
-  this->_sm_list.push_back(sm);
+    this->_sm_list.push_back(sm);
 }
 
 void Event::dettach(StateMachine *sm) {
-  // TODO: Implement this method
-}
-
-int Event::status() {
-  return _sm_list.size();
+    // TODO: Implement method
 }
 
 void Event::happen() {
-  Serial.println("\n\nEVENT HAPENED!!\n\n");
-  Serial.print("\nsm_number = ");
-  Serial.println(_sm_list.size());
-  for (int i = 0; i < this->_sm_list.size(); i++) {
-    //printf("i = %d", i);
-    Serial.print("i = ");
-    Serial.println(i);
-    _sm_list[i]->transition(this);
-  }
-  Serial.print("Transitions Done\n");
+    for (size_t i = 0; i < this->_sm_list.size(); i++) {
+        _sm_list[i]->transition(this);
+    }
 }

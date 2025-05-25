@@ -1,11 +1,13 @@
-#include <Arduino.h>
 #include "StateMachine.h"
 #include "Event.h"
 
-unsigned int StateMachine::get_id() {
-  return id;
+StateMachine::StateMachine(){
+};
+
+void StateMachine::reset() {
+  _current_state = 0;
 }
 
-void StateMachine::attach_event(Event *event_) {
-  event_->attach(this);
+void StateMachine::attach_event(Event *event) {
+  event->attach(this);
 }
