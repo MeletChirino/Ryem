@@ -16,12 +16,6 @@ class Event {
 		void attach(StateMachine* sm);
 		void dettach(StateMachine* sm);
 		void happen();
-		// void init(int id_) {
-		// 	id = id_;
-		// };
-		// int status() {
-		// 	return _sm_list.size();
-		// };
 		int get_id() {
 			return id;
 		};
